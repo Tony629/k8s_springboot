@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-springboot-deployment
+  labels:
+    app: k8s-springboot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-springboot
+  template:
+    metadata:
+      labels:
+        app: k8s-springboot
+    spec:
+      containers:
+        - name: k8s-springboot
+          image: k8s-springboot:latest
+          imagePullPolicy: Never  # 拉取本地镜像
+          ports:
+            - containerPort: 8080
